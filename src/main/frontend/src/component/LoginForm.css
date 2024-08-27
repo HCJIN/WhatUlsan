@@ -1,0 +1,18 @@
+.container{
+  display: flex;
+  margin: 0 auto;
+}
+.inputLogin{
+  display: flex;
+  flex-direction: column;
+  
+  align-items: center;
+}
+.inputLogin>input{
+  margin-bottom: 10px;
+}
+.sns-div{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr
+  );
+}
