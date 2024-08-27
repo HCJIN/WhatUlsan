@@ -15,15 +15,35 @@ function App() {
             <div className='menu_wrap'>
               <button className='menu_btn'>
                 <span>
-                  메뉴열기
+                  <i className="bi bi-list"></i>
                 </span>
               </button>
             </div>
             <div className='logo_wrap'>
-
+              <img src='http://localhost:8080/images/login_logo.png'></img>
+              <span>왔어울산</span>
+            </div>
+            <div className='search_wrap'>
+              <div className='search_input'>
+                <div>
+                  <input type='search' placeholder='울산 여행 어디가 좋을까?' maxLength={100}></input>
+                  <button type='button'>
+                    <i className="bi bi-search-heart"></i>
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
-          <div className='header_right'></div>
+          <div className='header_right'>
+            <ul className='info_wrap'>
+              <li>로그인</li>
+              <li>회원가입</li>
+              <li>
+                고객센터
+              </li>
+              <li>찜목록</li>
+            </ul>
+          </div>
         </div>
       </header>
 
