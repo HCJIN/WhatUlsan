@@ -34,14 +34,14 @@ const changeBtn = (e) => {
           <div className='nationality'>
               <button className={'join-btn ' + (btnActive == 'citizen' ? "join-btn-action" : "" )}
                       type='button'
-                      name='citizen'
+                      name='nationality'
                       value='citizen'
                       onClick={(e) => {changeBtn(e)}}>
                         내국인
               </button>
               <button className={'join-btn ' + (btnActive == 'foreigner' ? "join-btn-action" : "" )}
                       type='button'
-                      name='foreigner'
+                      name='nationality'
                       value='foreigner'
                       onClick={(e) => {changeBtn(e)}}>
                 외국인
@@ -110,7 +110,7 @@ const changeBtn = (e) => {
                  "join-btn-action" : ""
               ) }
                       type='button'
-                      name='male'
+                      name='gender'
                       value='male'
                       onClick={(e) => {changeBtn(e)}}>
                 남성
@@ -119,7 +119,7 @@ const changeBtn = (e) => {
                  "join-btn-action" : ""
               )}
                       type='button'
-                      name='female'
+                      name='gender'
                       value='female'
                       onClick={(e) => {changeBtn(e)}}
                       >
