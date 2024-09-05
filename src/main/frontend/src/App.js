@@ -41,7 +41,7 @@ function App() {
           </div>
           <div className='header_right'>
             <ul className='info_wrap'>
-              <li>로그인</li>
+              <li onClick={(e)=>{navigate(`/loginForm`)}}>로그인</li>
               <li>회원가입</li>
               <li onClick={()=>{
                 navigate('/serviceCenter')

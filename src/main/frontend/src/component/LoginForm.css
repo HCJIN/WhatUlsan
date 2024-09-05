@@ -1,18 +1,47 @@
-.container{
-  display: flex;
+.main{
+  width: 800px;
   margin: 0 auto;
+  margin-top: 200px;
+}
+.login-box>p{
+  text-align: center;
+  border-bottom: 1px solid black;
+}
+.login-box{
+  margin: 0 auto;
+  margin-top: 500px;
+}
+.login-box>h2{
+  
+}
+.div-btn{
+  display: flex;
+  flex-direction: column;
+}
+.div-btn>p{
+  font-size: 0.8rem;
+  text-align: center;
 }
 .inputLogin{
   display: flex;
   flex-direction: column;
-  
-  align-items: center;
+  text-align: center;
 }
 .inputLogin>input{
   margin-bottom: 10px;
+}
+.leak{
+  text-align: end;
+  font-size: 0.8rem;
 }
 .sns-div{
   display: grid;
   grid-template-columns: repeat(3, 1fr
   );
+}
+.sns-div>div{
+  width: 80px;
+  height: 50px;
+  margin: 0 auto;
+  text-align: center;
 }
