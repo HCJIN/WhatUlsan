@@ -1,7 +1,17 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './JoinForm.css'
 
 const JoinForm = () => {
+
+// 버튼 바뀔때마다 색상밖끼게
+const [btnActive, setBtnActive] = useState('');
+
+// 버튼 클릭시
+const changeBtn = (e) => {
+  setBtnActive(e.target.value)
+}
+
+
   return (
     <div className='join-main'>
       <div>
@@ -21,13 +31,21 @@ const JoinForm = () => {
         </div>
         {/* 국적 */}
         <div>
-          <div>
-            <div>
-              <button>내국인</button>
-            </div>
-            <div>
-              <button>외국인</button>
-            </div>
+          <div className='nationality'>
+              <button className={'join-btn ' + (btnActive == 'citizen' ? "join-btn-action" : "" )}
+                      type='button'
+                      name='citizen'
+                      value='citizen'
+                      onClick={(e) => {changeBtn(e)}}>
+                        내국인
+              </button>
+              <button className={'join-btn ' + (btnActive == 'foreigner' ? "join-btn-action" : "" )}
+                      type='button'
+                      name='foreigner'
+                      value='foreigner'
+                      onClick={(e) => {changeBtn(e)}}>
+                외국인
+              </button>
           </div>
 
           <div>
@@ -48,17 +66,23 @@ const JoinForm = () => {
               휴대폰 번호
             </div>
             <div>
-            <input class="vti__input" placeholder="‘-’ 빼고 숫자만 입력" value=""/>
+            <input class="vti__input" 
+                   placeholder="‘-’ 빼고 숫자만 입력" 
+                   value=""/>
             </div>
           </div>
           {/* 비밀번호 */}
           <div>
             <div>비밀번호</div>
             <div>
-              <input type='password' placeholder='비밀번호 입력'/>
+              <input className='password' 
+                    type='password' 
+                    placeholder='비밀번호 입력'/>
             </div>
             <div>
-              <input type='password' placeholder='비밀번호 입력확인'/>
+              <input className='password'
+                    type='password' 
+                    placeholder='비밀번호 입력확인'/>
             </div>
             <div>
               비밀번호는 영문+숫자+특수문자 조합으로 9자~16자로 사용할 수 있습니다.
@@ -68,18 +92,39 @@ const JoinForm = () => {
           <div>
             <div>이름</div>
             <div>
-              <input type='text' placeholder='성 (Last name)'/>
+              <input className='name'
+                     type='text' 
+                     placeholder='성 (Last name)'/>
             </div>
             <div>
-              <input type='text' placeholder='이름 (First name)'/>
+              <input className='name' 
+                     type='text' 
+                     placeholder='이름 (First name)'/>
             </div>
           </div>
           {/* 성별 */}
           <div>
             <div>성별</div>
-            <div>
-              <button type='button'>남성</button>
-              <button type='button'>여성</button>
+            <div className='gender'>
+              <button className={'join-btn ' + (btnActive == 'male' ?
+                 "join-btn-action" : ""
+              ) }
+                      type='button'
+                      name='male'
+                      value='male'
+                      onClick={(e) => {changeBtn(e)}}>
+                남성
+              </button>
+              <button className={'join-btn ' + (btnActive == 'female' ?
+                 "join-btn-action" : ""
+              )}
+                      type='button'
+                      name='female'
+                      value='female'
+                      onClick={(e) => {changeBtn(e)}}
+                      >
+                여성
+              </button>
             </div>
           </div>
           {/* 생년월일 */}
@@ -101,7 +146,10 @@ const JoinForm = () => {
           </div>
           {/* 시작버튼 */}
           <div>
-            <button type='button'>왔어울산 시작하기</button>
+            <button className='join-btn joinBtn'
+                    type='button'>
+                      왔어울산 시작하기
+            </button>
           </div>
         </div>
       </div>
