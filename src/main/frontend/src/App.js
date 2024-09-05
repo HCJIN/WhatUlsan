@@ -1,11 +1,15 @@
 import logo from './logo.svg';
 import './App.css';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useNavigate } from 'react-router-dom';
 import Restaurant from './component/Restaurant';
 import LoginForm from './component/LoginForm';
 import JoinForm from './component/JoinForm';
+import ServiceCenter from './component/ServiceCenter';
 
 function App() {
+
+  const navigate = useNavigate();
+
   return (
     <div className="App">
 
@@ -38,7 +42,9 @@ function App() {
             <ul className='info_wrap'>
               <li>로그인</li>
               <li>회원가입</li>
-              <li>
+              <li onClick={()=>{
+                navigate('/serviceCenter')
+              }}>
                 고객센터
               </li>
               <li>찜목록</li>
@@ -62,6 +68,9 @@ function App() {
 
         {/* 회원가입페이지 */}
         <Route path='/joinForm' element={<JoinForm />} />
+
+        {/* 고객센터페이지 */}
+        <Route path='/serviceCenter' element={<ServiceCenter/>} />
 
       </Routes>
 
