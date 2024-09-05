@@ -1,11 +1,12 @@
 import logo from './logo.svg';
 import './App.css';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useNavigate } from 'react-router-dom';
 import Restaurant from './component/Restaurant';
 import LoginForm from './component/LoginForm';
 import JoinForm from './component/JoinForm';
 
 function App() {
+  const navigate = useNavigate()
   return (
     <div className="App">
 
@@ -36,7 +37,7 @@ function App() {
           </div>
           <div className='header_right'>
             <ul className='info_wrap'>
-              <li>로그인</li>
+              <li onClick={(e)=>{navigate(`/loginForm`)}}>로그인</li>
               <li>회원가입</li>
               <li>
                 고객센터

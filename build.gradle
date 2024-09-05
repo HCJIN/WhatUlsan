@@ -40,6 +40,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
+
 	implementation('org.springframework.boot:spring-boot-starter-actuator')
 	implementation('org.springframework.boot:spring-boot-starter-data-jpa')
 	implementation('org.springframework.boot:spring-boot-starter-data-rest')
@@ -53,6 +54,15 @@ dependencies {
 	compileOnly('org.projectlombok:lombok')
 	annotationProcessor('org.projectlombok:lombok')
 	testAnnotationProcessor('org.projectlombok:lombok')
+	implementation 'org.springframework.boot:spring-boot-starter'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+	spring.security.oauth2.client.registration.naver.client-id=
+	spring.security.oauth2.client.registration.naver.client-secret=
+	spring.security.oauth2.client.registration.naver.scope=name,email
+	spring.security.oauth2.client.registration.naver.client-name=Naver
+	spring.security.oauth2.client.registration.naver.authorization-grant-type=authorization_code
+	spring.security.oauth2.client.registration.naver.redirect-uri=http://localhost:8080/login/oauth2/code/naver
 }
 
 tasks.named('test') {
