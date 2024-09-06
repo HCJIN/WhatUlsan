@@ -2,9 +2,6 @@ header{
   background-color: #fff;
   border-bottom: 1px solid #e5e5e5;
   box-shadow: 0 3px 6px #00000029;
-  left: 0;
-  position: fixed;
-  top: 0;
   transition: height .3s;
   width: 100%;
   z-index: 100;
@@ -48,6 +45,11 @@ header{
 .logo_wrap span{
   margin-left: 10px;
   font-size: 0;
+}
+
+.main-logo{
+  width: 150px;
+  margin: 0px 10px;
 }
 
 .search_wrap{
