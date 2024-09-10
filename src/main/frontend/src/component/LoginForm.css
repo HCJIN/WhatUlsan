@@ -1,8 +1,9 @@
 .main{
   width: 800px;
   margin: 0 auto;
-  margin-top: 200px;
+  margin-top: 10px;
 }
+
 .login-box>p{
   text-align: center;
   border-bottom: 1px solid black;
@@ -10,9 +11,12 @@
 .login-box{
   margin: 0 auto;
   margin-top: 500px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
 }
 .login-box>h2{
-  
+  text-align: center;
 }
 .div-btn{
   display: flex;

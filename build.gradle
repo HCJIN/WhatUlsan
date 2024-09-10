@@ -56,13 +56,7 @@ dependencies {
 	testAnnotationProcessor('org.projectlombok:lombok')
 	implementation 'org.springframework.boot:spring-boot-starter'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-
-	spring.security.oauth2.client.registration.naver.client-id=
-	spring.security.oauth2.client.registration.naver.client-secret=
-	spring.security.oauth2.client.registration.naver.scope=name,email
-	spring.security.oauth2.client.registration.naver.client-name=Naver
-	spring.security.oauth2.client.registration.naver.authorization-grant-type=authorization_code
-	spring.security.oauth2.client.registration.naver.redirect-uri=http://localhost:8080/login/oauth2/code/naver
+	implementation 'mysql:mysql-connector-java:8.0.30' // 최신 버전을 사용하세요
 }
 
 tasks.named('test') {

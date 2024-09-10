@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './LoginForm.css'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
@@ -6,15 +6,29 @@ const LoginForm = () => {
   
   const navigate = useNavigate()
 
-  function naverLogin(){
+  
+  const[loginData, setLoginData] = useState(
+    {
+      loginId:''
+      , loginPw:''
+    }
+  )
+
+  function tryLogin(){
     axios
-    .get(`/login/naver`)
+    .post(`/login/nomal`, loginData)
     .then((res)=>{
-      // 네이버 로그인 url로 리다이렉트
-      window.location.href = res.data
+      alert(`로그인 성공`)
     })
     .catch((error)=>{
-      console.log('네이버 로그인 요청 중 오류', error)
+      console.log('일반 로그인 에러', error)
+    })
+  }
+
+  function changeData(e){
+    setLoginData({
+      ...loginData,
+      [e.target.name]:e.target.value
     })
   }
 
@@ -25,21 +39,21 @@ const LoginForm = () => {
           <h2>왔어울산</h2>
          <div className='inputLogin'>
             이메일 로그인
-            <input type='text' name='memId' placeholder='아이디(이메일주소)'/>
-            <input type='password' name='memPw' placeholder='비밀번호 입력'/>
+            <input type='text' name='loginId' placeholder='아이디(이메일주소)' onChange={(e)=>{changeData(e)}}/>
+            <input type='password' name='loginPw' placeholder='비밀번호 입력'onChange={(e)=>{changeData(e)}}/>
          </div>
          <div className='leak'>
           비밀번호 찾기
          </div>
         <div className='div-btn'>
-           <button type='button'>로그인</button>
+           <button type='button' onClick={(e)=>{tryLogin()}}>로그인</button>
             <p>이메일 회원가입</p>
         </div>
           <p>간편 로그인</p>
           <div className='sns-div'>
             <div>카톡</div>
             <div>페북</div>
-            <div onClick={(e)=>{naverLogin()}}>네이버</div>
+            <div onClick={(e)=>{}}>네이버</div>
             <div>구글</div>
             <div>애플</div>
             <div>라인</div>
