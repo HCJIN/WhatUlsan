@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import './reset.css';
 import { Route, Routes, useNavigate } from 'react-router-dom';
@@ -6,6 +5,7 @@ import Restaurant from './component/Restaurant';
 import LoginForm from './component/LoginForm';
 import JoinForm from './component/JoinForm';
 import ServiceCenter from './component/ServiceCenter';
+import logo from './img/login_logo.png'
 
 function App() {
 
@@ -25,7 +25,7 @@ function App() {
               </button>
             </div>
             <div className='logo_wrap'>
-              <img src='http://localhost:8080/images/login_logo.png'></img>
+              <img src={logo} className='main-logo'></img>
               <span>왔어울산</span>
             </div>
             <div className='search_wrap'>
