@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 해당 파일에 모든 쿼리문을 작성 -->
+<mapper namespace="boardMapper">
+    <resultMap id="board" type="com.green.WhatUlsan.board.vo.BoardVO">
+        <result column="BOARD_NUM" property="boardNum"/>
+        <result column="BOARD_TITLE" property="boardTitle"/>
+        <result column="BOARD_CONTENT" property="boardContent"/>
+        <result column="CREATE_DATE" property="createDate"/>
+    </resultMap>
+
+    <!-- 게시글 조회 -->
+    <select id="getContentList" resultMap="board">
+        SELECT BOARD_NUM,
+            BOARD_TITLE,
+            BOARD_CONTENT,
+            CREATE_DATE
+        FROM WHAT_BOARD
+        ORDER BY BOARD_NUM DESC;
+    </select>
+
+    <!-- 번호에 맞는 게시글 조회 -->
+    <select id="getBoard" resultMap="board">
+        SELECT BOARD_NUM,
+        BOARD_TITLE,
+        BOARD_CONTENT,
+        CREATE_DATE
+        FROM WHAT_BOARD
+        WHERE BOARD_NUM = #{boardNum}
+    </select>
+
+    <!-- 게시글 등록 -->
+    <insert id="insertBoard">
+        INSERT INTO WHAT_BOARD (
+            BOARD_TITLE,
+            BOARD_CONTENT
+        ) VALUES (
+            #{boardTitle},
+            #{boardContent}
+        );
+    </insert>
+
+    <!-- 게시글 수정 -->
+    <update id="boardUpdate">
+        UPDATE WHAT_BOARD
+        SET
+            BOARD_TITLE = #{boardTitle},
+            BOARD_CONTENT = #{boardContent};
+    </update>
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

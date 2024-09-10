@@ -1,25 +1,35 @@
-import React, { useState } from 'react'
-import '../css/JoinwritingForm.css';
-import axios from 'axios';
+import axios from 'axios'
+import React, { useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom'
 
-const JoinwritingForm = ({writing, setWriting}) => {
+const BoardDetail = ({detail, setDetail, boardNum}) => {
 
-  const [post, setPost] = useState({})
+  const [boardDetail, setBoardDetail] = useState({});
+
+  useEffect(()=>{
+    axios
+    .get(`/board/getBoardDetail/${boardNum}`)
+    .then((res)=>{
+      setBoardDetail(res.data)
+      console.log(res.data)
+    })
+    .catch((error)=>{
+      console.log(error)
+    })
+  },[])
 
   function onChange(e){
-    setPost({
-      ...post,
+    setBoardDetail({
+      ...boardDetail,
       [e.target.name] : e.target.value
     })
   }
-  console.log(post)
 
-  function goContent(){
+  function goUpdate(){
     axios
-    .post('/board/insertBoard', post)
+    .post(`/board/boardUpdate`, boardDetail)
     .then((res)=>{
-      setWriting(false)
-      alert('게시글 등록 완료')
+
     })
     .catch((error)=>{
       console.log(error)
@@ -42,18 +52,14 @@ const JoinwritingForm = ({writing, setWriting}) => {
                     <span>작성자 : </span>
                     <span>이름</span>
                   </p>
-                  <i className="bi bi-x-circle-fill" onClick={()=>{
-                    setWriting(false)
-                  }}></i>
+                  <i className="bi bi-x-circle-fill"></i>
                 </div>
               </td>
             </tr>
             <tr>
               <td>제목</td>
               <td>
-                <input type='text' name='boardTitle' onChange={(e)=>{
-                  onChange(e)
-                }}></input>
+                <input type='text' name='boardTitle' value={boardDetail.boardTitle || ''} onChange={(e)=>{onChange(e)}}></input>
               </td>
             </tr>
             <tr>
@@ -61,19 +67,19 @@ const JoinwritingForm = ({writing, setWriting}) => {
                 내용
               </td>
               <td>
-                <textarea name='boardContent' onChange={(e)=>{
-                  onChange(e)
-                }}></textarea>
+                <textarea name='boardContent' value={boardDetail.boardContent || ''} onChange={(e)=>{onChange(e)}}></textarea>
               </td>
             </tr>
           </tbody>
         </table>
         <div className='writingFromBtn-div'>
-          <button type='button' className='joinBtn-writing' onClick={()=>{goContent()}}>확인</button>
+          <button type='button' className='joinBtn-writing' onChange={()=>{
+            goUpdate()
+          }}>확인</button>
         </div>
       </div>
     </div>
   )
 }
 
-export default JoinwritingForm
+export default BoardDetail

@@ -24,19 +24,30 @@ repositories {
 }
 
 dependencies {
-	implementation 'org.bgee.log4jdbc-log4j2:log4jdbc-log4j2-jdbc4:1.16' //쿼리 로그 라이브러리 추가
-	compileOnly("org.springframework.boot:spring-boot-devtools") //html새로고침
-	implementation 'org.springframework.boot:spring-boot-starter-security'
-	implementation 'org.springframework.boot:spring-boot-starter-web'
-	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.3'
+	implementation 'org.bgee.log4jdbc-log4j2:log4jdbc-log4j2-jdbc4:1.16' // 쿼리 로그 라이브러리 추가
 	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'
-	annotationProcessor 'org.projectlombok:lombok'
+	runtimeOnly 'mysql:mysql-connector-java'
+
+	// Spring Boot starters
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+//	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
+
+	// Additional dependencies
+	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.3'
+	implementation 'org.springframework.cloud:spring-cloud-starter-openfeign:3.1.3'
+	implementation 'com.google.code.gson:gson:2.9.0'
+
+	// Testing dependencies
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter-test:3.0.3'
-	testImplementation 'org.springframework.security:spring-security-test'
+//	testImplementation 'org.springframework.security:spring-security-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+<<<<<<< HEAD
 	implementation 'org.springframework.boot:spring-boot-starter'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
@@ -63,6 +74,8 @@ dependencies {
 	spring.security.oauth2.client.registration.naver.client-name=Naver
 	spring.security.oauth2.client.registration.naver.authorization-grant-type=authorization_code
 	spring.security.oauth2.client.registration.naver.redirect-uri=http://localhost:8080/login/oauth2/code/naver
+=======
+>>>>>>> hcj
 }
 
 tasks.named('test') {
