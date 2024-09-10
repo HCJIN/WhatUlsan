@@ -16,33 +16,33 @@ const Restaurant = () => {
   function headName(){
     if(headSelect == '맛집'){
       return(
-        <div className='change-head'>
-          <span>전체</span>
-          <span>한식</span>
-          <span>중식</span>
-          <span>일식</span>
-          <span>양식</span>
-          <span>아시안</span>
-          <span>기타</span>
-        </div>
+        <ul className='change-head'>
+          <li>전체</li>
+          <li>한식</li>
+          <li>중식</li>
+          <li>일식</li>
+          <li>양식</li>
+          <li>아시안</li>
+          <li>기타</li>
+        </ul>
       )
     }
     else if(headSelect == '카페/디저트'){
       return(
-        <div className='change-head'>
-          <span>전체</span>
-          <span>디저트</span>
-          <span>카페</span>
-        </div>
+        <ul className='change-head'>
+          <li>전체</li>
+          <li>디저트</li>
+          <li>카페</li>
+        </ul>
       )
     }
     else if(headSelect == '추천관광지'){
       return(
-        <div className='change-head'>
-          <span>전체</span>
-          <span>볼거리</span>
-          <span>즐길거리</span>
-        </div>
+        <ul className='change-head'>
+          <li>전체</li>
+          <li>볼거리</li>
+          <li>즐길거리</li>
+        </ul>
       )
     }
   }
@@ -51,7 +51,7 @@ const Restaurant = () => {
   function filterName(){
     if(headSelect == '맛집'){
       return(
-        <div>
+        <div className='restaurant-under-bar'>
           <select>
             <option>편의시설</option>
             <option>무료주차</option>
@@ -76,7 +76,7 @@ const Restaurant = () => {
     }
     else if(headSelect == '카페/디저트'){
       return(
-        <div>
+        <div className='restaurant-under-bar'>
           <select>
             <option>편의시설</option>
             <option>무료주차</option>
@@ -101,14 +101,16 @@ const Restaurant = () => {
     }
     else if(headSelect == '추천관광지'){
       return(
-        <select>
-          <option>지역</option>
-          <option>중구</option>
-          <option>남구</option>
-          <option>북구</option>
-          <option>동구</option>
-          <option>울주구</option>
-        </select>
+        <div className='restaurant-under-bar'>
+          <select>
+            <option>지역</option>
+            <option>중구</option>
+            <option>남구</option>
+            <option>북구</option>
+            <option>동구</option>
+            <option>울주구</option>
+          </select>
+        </div>
       )
     }
   }
@@ -116,7 +118,7 @@ const Restaurant = () => {
   return (
     <div className='restaurant-contain'>
       <div className='restaurant-select-head'>
-        <select onChange={headSelectOnchange} value={headSelect}>
+        <select className='restaurant-head-bar' onChange={headSelectOnchange} value={headSelect}>
           <option value='맛집'>맛집</option>
           <option value='카페/디저트'>카페/디저트</option>
           <option value='추천관광지'>추천관광지</option>
@@ -125,24 +127,29 @@ const Restaurant = () => {
       </div>
       <div className='restaurant-main-content'>
         <div className='restaurant-filter-food'>
-          <div>전체</div>
+          <div className='restaurant-filter-food-head'>전체</div>
           {filterName()}
         </div>
         <div className='restaurant-sequence'>
-          <div>전체 갯수</div>
-          <select>
-            <option>최근 등록 순</option>
-            <option>구매 많은 순</option>
-            <option>평점 높은 순</option>
-            <option>리뷰 높은 순</option>
-          </select>
-          <div>
-            {/* 부트스트랩에서 그림 4개 표현 하는 거 찾기 */}
-            <button type='button' >그림 1줄에 4개씩 보이기</button>
-            {/* 부트스트랩에서 그림 1개 표현 하는 거 찾기 */}
-            <button type='button' >그림 1줄에 1개씩 보이기</button>
+          <div className='restaurant-sequence-all'>
+            전체 갯수
+          </div>
+          <div className='restaurant-sequence-right'>
+            <select>
+              <option>최근 등록 순</option>
+              <option>구매 많은 순</option>
+              <option>평점 높은 순</option>
+              <option>리뷰 높은 순</option>
+            </select>
+            <div>
+              {/* 부트스트랩에서 그림 4개 표현 하는 거 찾기 */}
+              <button type='button' >그림 1줄에 4개씩 보이기</button>
+              {/* 부트스트랩에서 그림 1개 표현 하는 거 찾기 */}
+              <button type='button' >그림 1줄에 1개씩 보이기</button>
+            </div>
           </div>
         </div>
+        {/* 이미지를 담당하는 div */}
         <div>
           <ul>
             <li>
@@ -152,13 +159,15 @@ const Restaurant = () => {
               </div>
             </li>
           </ul>
-          <div>
+          <div className='restaurant-under-page'>
             {/* 페이징 처리 해야함 */}
-            <button type='button' >첫번째 페이지</button>
+            <button type='button'>첫번째 페이지로 이동</button>
+            <button type='button'>한칸씩 이동</button>
             <ul>
-              <li>1</li>
+              <li>여기에 이미에 따라서 페이징처리</li>
             </ul>
-            <button type='button' >마지막 페이지</button>
+            <button type='button'>한칸씩 이동</button>
+            <button type='button'>마지막 페이지</button>
           </div>
         </div>
       </div>
