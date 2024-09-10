@@ -1,17 +1,37 @@
 import React, { useState } from 'react'
 import './JoinForm.css'
-
+import Select, { SingleValue, ActionMeta } from 'react-select';
 const JoinForm = () => {
 
 // 버튼 바뀔때마다 색상밖끼게
+//내국인 / 외국인
 const [btnActive, setBtnActive] = useState('');
+// 남자 / 여자
+const [btnActive1, setBtnActive1] = useState('');
 
 // 버튼 클릭시
+// 내 / 외국인
 const changeBtn = (e) => {
   setBtnActive(e.target.value)
 }
+// 남자 / 여자
+const changeBtn1 = (e) => {
+  setBtnActive1(e.target.value)
 
+}
 
+const CONTRY_CODE = [
+  { value: '82', label: '+82' },
+  { value: '61', label: '+61' },
+  { value: '81', label: '+81' },
+  { value: '84', label: '+84' },
+  { value: '852', label: '+852' },
+  { value: '65', label: '+65' },
+  { value: '34', label: '+34' },
+  { value: '90', label: '+90' },
+  { value: '1', label: '+1' },
+  { value: '44', label: '+44' },
+];
   return (
     <div className='join-main'>
       <div>
@@ -20,11 +40,11 @@ const changeBtn = (e) => {
       {/* 이것저것 모두다 */}
       <div>
         {/* 이메일 */}
-        <div>
+        <div className='emailAddr'>
           <div>
             아이디(이메일주소)
-            </div>
-          <div>
+          </div>
+          <div className='emailAddr-div'>
             <input type='text' />
             <button>인증번호 발송</button>
           </div>
@@ -48,27 +68,53 @@ const changeBtn = (e) => {
               </button>
           </div>
 
-          <div>
+          <div className='city-div'>
             <div>
-              <select>
+              <select className='city'>
                 <option>시/도</option>
+                <option>강원도</option>
+                <option>경기도</option>
+                <option>경상남도</option>
+                <option>경상북도</option>
+                <option>광주광역시</option>
+                <option>대구광역시</option>
+                <option>대전광역시</option>
+                <option>부산광역시</option>
+                <option>서울특별시</option>
+                <option>세종특별자치시</option>
+                <option>울산광역시</option>
+                <option>인천광역시</option>
+                <option>전라남도</option>
+                <option>전라북도</option>
+                <option>제주특별자치도</option>
+                <option>충청남도</option>
+                <option>충청북도</option>
               </select>
             </div>
             <div>
-              <select>
-                <option>시/도</option>
+              <select className='Province'>
+                <option>구/군</option>
               </select>
             </div>
           </div>
           {/* 휴대폰 번호 */}
-          <div>
+          <div className='phoneNumber'>
             <div>
               휴대폰 번호
             </div>
-            <div>
+            <div className='phone-div'>
+            <Select className='phone'
+        defaultValue={CONTRY_CODE[0]}
+        isClearable={false}
+        isSearchable={false}
+        menuPortalTarget={document.body}
+        options={CONTRY_CODE}
+        // styles={customStyles}
+        // onChange={handleOptionChange}
+      />
             <input class="vti__input" 
                    placeholder="‘-’ 빼고 숫자만 입력" 
-                   value=""/>
+                   />
             </div>
           </div>
           {/* 비밀번호 */}
@@ -84,7 +130,7 @@ const changeBtn = (e) => {
                     type='password' 
                     placeholder='비밀번호 입력확인'/>
             </div>
-            <div>
+            <div className='pass'>
               비밀번호는 영문+숫자+특수문자 조합으로 9자~16자로 사용할 수 있습니다.
             </div>
           </div>
@@ -106,22 +152,22 @@ const changeBtn = (e) => {
           <div>
             <div>성별</div>
             <div className='gender'>
-              <button className={'join-btn ' + (btnActive == 'male' ?
+              <button className={'join-btn ' + (btnActive1 == 'male' ?
                  "join-btn-action" : ""
               ) }
                       type='button'
                       name='gender'
                       value='male'
-                      onClick={(e) => {changeBtn(e)}}>
+                      onClick={(e) => {changeBtn1(e)}}>
                 남성
               </button>
-              <button className={'join-btn ' + (btnActive == 'female' ?
+              <button className={'join-btn ' + (btnActive1 == 'female' ?
                  "join-btn-action" : ""
               )}
                       type='button'
                       name='gender'
                       value='female'
-                      onClick={(e) => {changeBtn(e)}}
+                      onClick={(e) => {changeBtn1(e)}}
                       >
                 여성
               </button>
