@@ -143,9 +143,10 @@ const Restaurant = () => {
             </select>
             <div>
               {/* 부트스트랩에서 그림 4개 표현 하는 거 찾기 */}
-              <button type='button' >그림 1줄에 4개씩 보이기</button>
-              {/* 부트스트랩에서 그림 1개 표현 하는 거 찾기 */}
-              <button type='button' >그림 1줄에 1개씩 보이기</button>
+              <button style={{border:'none', marginLeft:'40px'}} type='button' className='button-icon' >
+                <span style={{paddingRight:'20px'}}><i class="bi bi-grid-fill"></i></span>
+                <span><i class="bi bi-grid-1x2-fill"></i></span>
+              </button>
             </div>
           </div>
         </div>
@@ -154,20 +155,30 @@ const Restaurant = () => {
           <ul>
             <li>
               <div>
-                <div>이미지</div>
+                <div>
+                  <img src="http://localhost:8080/imgs/화도담_4.jpg" alt='이미지' />
+                </div>
                 <div>이미지에 해당하는 기본정보</div>
               </div>
             </li>
           </ul>
           <div className='restaurant-under-page'>
             {/* 페이징 처리 해야함 */}
-            <button type='button'>첫번째 페이지로 이동</button>
-            <button type='button'>한칸씩 이동</button>
+            <button type='button' className='button-icon'>
+              <i class="bi bi-chevron-double-left"></i>
+            </button>
+            <button typeof='button' className='button-icon'>
+              <i class="bi bi-chevron-left"></i>
+            </button>
             <ul>
               <li>여기에 이미에 따라서 페이징처리</li>
             </ul>
-            <button type='button'>한칸씩 이동</button>
-            <button type='button'>마지막 페이지</button>
+            <button type='button' className="button-icon">
+              <i class="bi bi-chevron-right"></i>
+            </button>
+            <button type='button' className='button-icon'>
+              <i class="bi bi-chevron-double-right"></i>
+            </button>
           </div>
         </div>
       </div>

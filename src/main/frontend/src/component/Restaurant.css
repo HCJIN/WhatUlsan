@@ -95,3 +95,21 @@
 .restaurant-under-page > ul{
   margin-right: 10px;
 }
+
+.button-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #dcdcdc;
+  background-color: transparent; /* 배경색 제거 */
+  border-radius: 5px;
+  box-sizing: border-box;
+  height: 30px;
+  width: 30px;
+  font-size: 24px; /* 아이콘 크기 조절 */
+  cursor: pointer; /* 마우스 포인터 모양 변경 */
+}
+
+.button-icon > i {
+  color: #000; /* 아이콘 색상 조절 */
+}
