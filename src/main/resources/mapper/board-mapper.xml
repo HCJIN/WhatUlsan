@@ -46,8 +46,17 @@
         UPDATE WHAT_BOARD
         SET
             BOARD_TITLE = #{boardTitle},
-            BOARD_CONTENT = #{boardContent};
+            BOARD_CONTENT = #{boardContent},
+            CREATE_DATE = NOW()
+        WHERE BOARD_NUM = #{boardNum};
     </update>
+
+    <!-- 게시글 삭제 -->
+    <delete id="boardDelete">
+        DELETE
+        FROM WHAT_BOARD
+        WHERE BOARD_NUM = #{boardNum}
+    </delete>
 
 </mapper>
 

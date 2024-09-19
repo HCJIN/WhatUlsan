@@ -38,4 +38,10 @@ public class BoardController {
         boardService.boardUpdate(boardVO);
     }
 
+    //게시글 삭제
+    @PostMapping("/boardDelete")
+    private void boardDlete(@RequestBody BoardVO boardVO){
+        boardService.boardDelete(boardVO);
+    }
+
 }
