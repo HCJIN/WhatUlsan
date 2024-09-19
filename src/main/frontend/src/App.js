@@ -6,6 +6,7 @@ import LoginForm from './component/LoginForm';
 import JoinForm from './component/JoinForm';
 import ServiceCenter from './component/ServiceCenter';
 import logo from './img/login_logo.png'
+import MainPage from './component/MainPage';
 
 function App() {
 
@@ -24,7 +25,9 @@ function App() {
                 </span>
               </button>
             </div>
-            <div className='logo_wrap'>
+            <div className='logo_wrap' onClick={()=>{
+              navigate('/')
+            }}>
               <img src={logo} className='main-logo'></img>
               <span>왔어울산</span>
             </div>
@@ -59,7 +62,7 @@ function App() {
       <Routes>
 
         {/* 메인페이지 */}
-        <Route path='' element={<div>메인페이지</div>} />
+        <Route path='' element={<MainPage />} />
 
         {/* 맛집페이지  */}
         <Route path='/restaurant' element={<Restaurant />} />
