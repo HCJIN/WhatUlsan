@@ -24,12 +24,26 @@ const BoardDetail = ({detail, setDetail, boardNum}) => {
       [e.target.name] : e.target.value
     })
   }
+  console.log(boardDetail)
 
   function goUpdate(){
     axios
     .post(`/board/boardUpdate`, boardDetail)
     .then((res)=>{
+      setDetail(false);
+      alert('게시글 수정 완료')
+    })
+    .catch((error)=>{
+      console.log(error)
+    })
+  }
 
+  function goDelete(){
+    axios
+    .post(`/board/boardDelete`, boardDetail)
+    .then((res)=>{
+      setDetail(false);
+      alert('게시글 삭제 완료')
     })
     .catch((error)=>{
       console.log(error)
@@ -52,7 +66,9 @@ const BoardDetail = ({detail, setDetail, boardNum}) => {
                     <span>작성자 : </span>
                     <span>이름</span>
                   </p>
-                  <i className="bi bi-x-circle-fill"></i>
+                  <i className="bi bi-x-circle-fill" onClick={()=>{
+                    setDetail(false);
+                  }}></i>
                 </div>
               </td>
             </tr>
@@ -73,9 +89,12 @@ const BoardDetail = ({detail, setDetail, boardNum}) => {
           </tbody>
         </table>
         <div className='writingFromBtn-div'>
-          <button type='button' className='joinBtn-writing' onChange={()=>{
+          <button type='button' className='joinBtn-writing' onClick={()=>{
             goUpdate()
           }}>확인</button>
+          <button type='button' className='joinBtn-writing' onClick={()=>{
+            goDelete()
+          }}>삭제</button>
         </div>
       </div>
     </div>

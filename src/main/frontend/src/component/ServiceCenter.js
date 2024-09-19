@@ -27,7 +27,7 @@ const ServiceCenter = () => {
       .catch((error) => {
         console.log(error);
       });
-  }, [writing]);
+  }, [writing, detail]);
 
   const formatDate = (dateTime) => {
     const date = new Date(dateTime);

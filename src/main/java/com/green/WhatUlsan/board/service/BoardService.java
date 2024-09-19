@@ -17,4 +17,7 @@ public interface BoardService {
 
     //게시글 수정
     void boardUpdate(BoardVO boardVO);
+
+    //게시글 삭제
+    void boardDelete(BoardVO boardVO);
 }
