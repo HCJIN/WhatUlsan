@@ -40,6 +40,7 @@ header{
 
 .logo_wrap{
   margin-right: 24px;
+  cursor: pointer;
 }
 
 .logo_wrap span{
