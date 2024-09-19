@@ -1,13 +1,14 @@
 import React, { useState } from 'react'
 import './JoinForm.css'
 import Select, { SingleValue, ActionMeta } from 'react-select';
+import JoinFormArea from './JoinFormArea';
 const JoinForm = () => {
 
 // 버튼 바뀔때마다 색상밖끼게
 //내국인 / 외국인
-const [btnActive, setBtnActive] = useState('');
+const [btnActive, setBtnActive] = useState('citizen');
 // 남자 / 여자
-const [btnActive1, setBtnActive1] = useState('');
+const [btnActive1, setBtnActive1] = useState('male');
 
 // 버튼 클릭시
 // 내 / 외국인
@@ -32,6 +33,7 @@ const CONTRY_CODE = [
   { value: '1', label: '+1' },
   { value: '44', label: '+44' },
 ];
+
   return (
     <div className='join-main'>
       <div>
@@ -56,6 +58,7 @@ const CONTRY_CODE = [
                       type='button'
                       name='nationality'
                       value='citizen'
+                      
                       onClick={(e) => {changeBtn(e)}}>
                         내국인
               </button>
@@ -69,33 +72,7 @@ const CONTRY_CODE = [
           </div>
 
           <div className='city-div'>
-            <div>
-              <select className='city'>
-                <option>시/도</option>
-                <option>강원도</option>
-                <option>경기도</option>
-                <option>경상남도</option>
-                <option>경상북도</option>
-                <option>광주광역시</option>
-                <option>대구광역시</option>
-                <option>대전광역시</option>
-                <option>부산광역시</option>
-                <option>서울특별시</option>
-                <option>세종특별자치시</option>
-                <option>울산광역시</option>
-                <option>인천광역시</option>
-                <option>전라남도</option>
-                <option>전라북도</option>
-                <option>제주특별자치도</option>
-                <option>충청남도</option>
-                <option>충청북도</option>
-              </select>
-            </div>
-            <div>
-              <select className='Province'>
-                <option>구/군</option>
-              </select>
-            </div>
+              <JoinFormArea/>
           </div>
           {/* 휴대폰 번호 */}
           <div className='phoneNumber'>
