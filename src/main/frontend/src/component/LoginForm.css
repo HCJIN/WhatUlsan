@@ -2,8 +2,11 @@
   width: 800px;
   margin: 0 auto;
   margin-top: 10px;
+  height: 100%;
 }
-
+.container{
+  border: 1px solid black;
+}
 .login-box>p{
   text-align: center;
   border-bottom: 1px solid black;
@@ -31,6 +34,9 @@
   flex-direction: column;
   text-align: center;
 }
+.inputLogin>p{
+  margin-bottom: 25px;
+}
 .inputLogin>input{
   margin-bottom: 10px;
 }
@@ -40,8 +46,7 @@
 }
 .sns-div{
   display: grid;
-  grid-template-columns: repeat(3, 1fr
-  );
+  grid-template-columns: repeat(3, 1fr);
 }
 .sns-div>div{
   width: 80px;

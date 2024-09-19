@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import './LoginForm.css'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
+
 const LoginForm = () => {
   
   const navigate = useNavigate()
@@ -13,6 +14,15 @@ const LoginForm = () => {
       , loginPw:''
     }
   )
+
+const CLIENT_ID = 'ZlbRdQHVy1guysjCbXWu';
+const REDIRECT_URI = 'http://localhost:8080/auth/naver/login/callback';
+const NAVER_AUTH_URL = `https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}`;
+
+function tryNaver() {
+  window.location.href = NAVER_AUTH_URL;
+}
+
 
   function tryLogin(){
     axios
@@ -38,7 +48,7 @@ const LoginForm = () => {
         <div className='login-box'>
           <h2>왔어울산</h2>
          <div className='inputLogin'>
-            이메일 로그인
+            <p>이메일 로그인</p>
             <input type='text' name='loginId' placeholder='아이디(이메일주소)' onChange={(e)=>{changeData(e)}}/>
             <input type='password' name='loginPw' placeholder='비밀번호 입력'onChange={(e)=>{changeData(e)}}/>
          </div>
@@ -53,7 +63,7 @@ const LoginForm = () => {
           <div className='sns-div'>
             <div>카톡</div>
             <div>페북</div>
-            <div onClick={(e)=>{}}>네이버</div>
+            <div onClick={(e)=>{tryNaver()}}>네이버</div>
             <div>구글</div>
             <div>애플</div>
             <div>라인</div>
