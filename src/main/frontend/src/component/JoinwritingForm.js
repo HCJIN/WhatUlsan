@@ -16,9 +16,10 @@ const JoinwritingForm = ({writing, setWriting}) => {
 
   function goContent(){
     axios
-    .post('/service/insertContent', post)
+    .post('/board/insertBoard', post)
     .then((res)=>{
       setWriting(false)
+      alert('게시글 등록 완료')
     })
     .catch((error)=>{
       console.log(error)

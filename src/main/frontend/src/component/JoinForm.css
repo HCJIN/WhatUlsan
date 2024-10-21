@@ -1,8 +1,50 @@
 .join-main{
-  width: 400px;
+  width: 500px;
   margin: auto;
   border: 1px solid;
   padding: 50px;
+}
+
+/* 아이디 이메일주소  */
+.emailAddr{
+  width: 100%;
+}
+
+.emailAddr-div{
+  position: relative;
+  display: flex;
+  width: 100%;
+  height: 30px;
+  justify-content: space-between;
+  margin: 10px 0;
+  border: 1px solid;
+}
+.emailAddr-div >input{
+  width: 71%;
+  border: none;
+  outline: none;
+  
+
+}
+.emailAddr-div >input:focus{
+  box-shadow: 0 0 0 3px skyblue;
+  border-color: transparent;
+
+}
+.emailAddr-div button{
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 90%;
+  margin-top: 2px;
+  margin-right: 10px;
+  background-color: #007f5e;
+  color: white;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.emailAddr-div button:focus {
+  box-shadow: 0 0 0 3px skyblue;
 }
 /* 국적버튼 FLEX */
 .nationality{
@@ -12,11 +54,19 @@
 .nationality  div{
   width: 100%;
 }
-
+/* 비밀번호 */
 .password{
   width: 100%;
   height: 35px;
   margin-bottom: 10px;
+  outline: none;
+}
+.password:focus{
+  box-shadow: 0 0 0 4px skyblue;
+  border-color: transparent;
+}
+.pass{
+  font-size: 0.7rem;
 }
 /* 이름 */
 
@@ -40,8 +90,8 @@
   height: 40px;
   cursor: pointer;
   border: 1px solid;
-  
 }
+
 /* 클릭햇을때 */
 .join-btn-action{
   background-color: #007f5e;
@@ -53,4 +103,46 @@
 
 .joinBtn{
   width: 100%;
+}
+
+.city-div {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0px;
+}
+
+.city-div > div{
+  width: 100%;
+}
+
+/* 시/도 */
+.city{
+  width: 100%;
+  height: 40px;
+
+}
+/* 구/군 */
+.Province{
+  width: 100%;
+  height: 40px;
+
+}
+
+/* 휴대폰 */
+.phoneNumber{
+  width: 100%;
+}
+.phone-div{
+  width: 100%;
+  display: flex;
+}
+/* select휴대번호 +82 */
+.phone{
+  width: 30%;
+  font-size: 0.8rem;
+}
+.phone-div > input{
+  display: block;
+  width: 70%;
 }
