@@ -53,7 +53,7 @@ const ServiceCenter = () => {
         <p>고객센터</p>
       </div>
       <div className='section-div'>
-        <div className='section-container'>
+        <div className='service-section-container'>
           <div className='section-container-left'>
             <div className='left-side'>
               <ul className='side-menu-ul'>
