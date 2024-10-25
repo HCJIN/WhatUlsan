@@ -7,6 +7,7 @@ import JoinForm from './component/JoinForm';
 import ServiceCenter from './component/ServiceCenter';
 import logo from './img/login_logo.png'
 import MainPage from './component/MainPage';
+import RegImgPage from './component/RegImgPage';
 
 function App() {
 
@@ -76,6 +77,8 @@ function App() {
         {/* 고객센터페이지 */}
         <Route path='/serviceCenter' element={<ServiceCenter/>} />
 
+        {/* 이미지등록 페이지 */}
+        <Route path='/regImgPage' element={<RegImgPage />} />
       </Routes>
 
 

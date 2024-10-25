@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 해당 파일에 모든 쿼리문을 작성 -->
+<mapper namespace="itemMapper">
+    <resultMap id="category" type="com.green.WhatUlsan.item.vo.CategoryVO">
+        <id column="CATE_CODE" property="cateCode"/>
+        <result column="CATE_NAME" property="cateName"/>
+        <result column="CATE_DETAIL" property="cateDetail" />
+    </resultMap>
+
+    <resultMap id="amenities" type="com.green.WhatUlsan.item.vo.AmenitiesVO">
+        <id column="AMENITIES_CODE" property="amenitiesCode"/>
+        <result column="AMENITIES_NAME" property="amenitiesName"/>
+    </resultMap>
+
+    <resultMap id="item" type="com.green.WhatUlsan.item.vo.ItemVO">
+        <id column="ITEM_CODE" property="itemCode"/>
+        <result column="ITEM_NAME" property="itemName"/>
+        <result column="ITEM_INTRO" property="itemIntro"/>
+        <result column="ITEM_AREA" property="itemArea"/>
+        <result column="CATE_CODE" property="cateCode"/>
+        <collection property="imgList" ofType="com.green.WhatUlsan.item.vo.ImgVO" resultMap="img" />
+        <collection property="amenitiesList" resultMap="itemMapper.amenities" />
+    </resultMap>
+
+    <resultMap id="img" type="com.green.WhatUlsan.item.vo.ImgVO">
+        <id column="IMG_CODE" property="imgCode"/>
+        <result column="ORIGIN_FILE_NAME" property="originFileName"/>
+        <result column="ATTACHED_FILE_NAME" property="attachedFileName"/>
+        <result column="IS_MAIN" property="isMain"/>
+        <result column="ITEM_CODE" property="itemCode"/>
+    </resultMap>
+
+    <!--카테고리 리스트 조회-->
+    <select id="getCategoryList" resultMap="category">
+        SELECT CATE_CODE
+            , CATE_NAME
+            , CATE_DETAIL
+        FROM WHAT_CATEGORY;
+    </select>
+
+    <!--편의시설 리스트 조회-->
+    <select id="getAmenitiesList" resultMap="amenities">
+        SELECT AMENITIES_CODE
+            , AMENITIES_NAME
+        FROM ITEM_AMENITIES;
+    </select>
+
+    <!-- 상품 등록 -->
+    <insert id="insertItem">
+        INSERT INTO WHAT_ITEM(
+        ITEM_CODE,
+        ITEM_NAME,
+        ITEM_INTRO,
+        ITEM_AREA,
+        CATE_CODE
+        ) VALUES (
+        #{itemCode}
+        ,   #{itemName}
+        ,   #{itemIntro}
+        ,   #{itemArea}
+        ,   #{cateCode}
+        );
+    </insert>
+
+    <!-- 상품 이미지 등록 -->
+    <insert id="insertImgs">
+        INSERT INTO WHAT_REGIMG(
+        ORIGIN_FILE_NAME
+        , ATTACHED_FILE_NAME
+        , IS_MAIN
+        , ITEM_CODE
+        )VALUES
+        <foreach collection="imgList" item="img" separator=",">
+            (
+            #{img.originFileName}
+            , #{img.attachedFileName}
+            , #{img.isMain}
+            , #{itemCode}
+            )
+        </foreach>
+    </insert>
+
+    <insert id="insertAmenities">
+        INSERT INTO WHAT_ITEM_AMENITIES(ITEM_CODE, AMENITIES_CODE)
+        VALUES
+        <foreach collection="amenitiesList" item="amenities" separator=",">
+            (#{itemCode}, #{amenities.amenitiesCode})
+        </foreach>
+    </insert>
+
+    <!-- 다음에 들어갈 item_code 조회 -->
+    <select id="getNextItemCode" resultType="int">
+        SELECT IFNULL(MAX(ITEM_CODE),0) + 1
+        FROM WHAT_ITEM;
+    </select>
+
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
