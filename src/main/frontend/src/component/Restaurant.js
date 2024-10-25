@@ -68,7 +68,7 @@ const Restaurant = () => {
             <option>남구</option>
             <option>북구</option>
             <option>동구</option>
-            <option>울주구</option>
+            <option>울주군</option>
           </select>
           <select>
             <option>할인여부</option>
@@ -117,6 +117,8 @@ const Restaurant = () => {
       )
     }
   }
+
+  // 지역 편의시설 할인여부처럼 기본 값 일때는 전체를 조회하도록 만들어야한다.
 
   return (
     <div className='restaurant-contain'>

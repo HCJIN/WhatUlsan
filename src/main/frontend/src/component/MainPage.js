@@ -20,8 +20,12 @@ import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
+import { useNavigate } from 'react-router-dom';
 
 const MainPage = () => {
+
+  const navigate = useNavigate();
+
   return (
     <div>
       <div className='MainPage-div'>
@@ -64,7 +68,7 @@ const MainPage = () => {
             <img src={stIcon1}></img>
           </div>
           <div className='quick-menu'>
-            <img src={stIcon2}></img>
+            <img src={stIcon2} onClick={() => {navigate('/restaurant')}}></img>
           </div>
           <div className='quick-menu'>
             <img src={stIcon3}></img>
