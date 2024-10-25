@@ -8,7 +8,7 @@
 
 .menu-div{
   width:40%;
-  height: 500px;
+  height: 400px;
   background-color: #f0f0f0 !important;
   position: absolute;
   top: 50%;
@@ -18,6 +18,12 @@
   border-radius: 8px;
 }
 
+.menu-div-title{
+  font-size: 1.2rem;
+  font-weight: bold;
+  padding: 5px;
+}
+
 .modalConteiner > .menu-div{
   display: flex;
   flex-direction: column;
@@ -25,7 +31,7 @@
   align-items: flex-start;
 }
 
-.bi-door-closed{
+.bi-door-closed, .bi-door-open{
   text-align: end;
   font-size: 2rem;
   position: absolute;
@@ -35,7 +41,7 @@
   color: rgba(0, 0, 0, .6);
 }
 
-.bi-door-closed:hover{
+.bi-door-closed:hover, .bi-door-open:hover{
   color: #333;
 }
 

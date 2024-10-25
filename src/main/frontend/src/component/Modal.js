@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import stIcon3 from '../img/TourBus_ko.png';
 import stIcon5 from '../img/Accommodation_ko.png';
 import stIcon6 from '../img/TourTaxi_ko.png';
@@ -8,13 +8,26 @@ import stIcon4 from '../img/tour.png';
 import '../css/Modal.css';
 
 const Modal = ({show, setShow}) => {
+
+  const [door, setDoor] = useState(false);
+
+
   return (
     <div className='modalConteiner'>
       <div className='menu-div'>
-        <div>
-          <i className="bi bi-door-closed" onClick={()=>{
-            setShow(false);
-          }}></i>
+        <p className='menu-div-title'>전체메뉴</p>
+        <div
+          // onMouseEnter와 onMouseLeave를 같은 div에 적용하여 문 상태 변경
+          onMouseEnter={() => setDoor(true)}  
+          onMouseLeave={() => setDoor(false)}  
+        >
+          {
+            door ? <i className="bi bi-door-open" 
+              onClick={()=> {setShow(false)}}
+            ></i> 
+            :           
+            <i className="bi bi-door-closed" ></i>
+          }
         </div>
         <div className='menu-div-top'>
           <div className='restaurant'>
@@ -55,7 +68,7 @@ const Modal = ({show, setShow}) => {
             </ul>
           </div>
         </div>
-        <div className='menu-div-bottom'>
+        {/* <div className='menu-div-bottom'>
           <div className='icon-div-all'>
             <div className='icon-div'>
               <img src={stIcon3}></img>
@@ -67,7 +80,7 @@ const Modal = ({show, setShow}) => {
               <img src={stIcon6}></img>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   )
