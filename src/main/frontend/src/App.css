@@ -117,3 +117,7 @@ header{
   padding: 0 12px;
   cursor: pointer;
 }
+
+.bi-list{
+  cursor: pointer;
+}

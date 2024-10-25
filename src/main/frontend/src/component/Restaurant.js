@@ -1,8 +1,11 @@
 import React, { useState } from 'react'
 import './Restaurant.css';
+import { useNavigate } from 'react-router-dom';
 
 
 const Restaurant = () => {
+
+  const navigate = useNavigate();
 
   // restaurant-select-head 부분의 글이 바뀔때 거기에 맞는 값이 들어오게 하는 state변수
   const [headSelect, setHeadSelect] = useState('맛집');
@@ -156,7 +159,7 @@ const Restaurant = () => {
             <li>
               <div>
                 <div>
-                  <img src="http://localhost:8080/imgs/화도담_4.jpg" alt='이미지' />
+                  <img onClick={() => {navigate()}} style={{width:'100px'}} src="http://localhost:8080/imgs/화도담_4.jpg" alt='이미지' />
                 </div>
                 <div>이미지에 해당하는 기본정보</div>
               </div>

@@ -7,13 +7,24 @@ import JoinForm from './component/JoinForm';
 import ServiceCenter from './component/ServiceCenter';
 import logo from './img/login_logo.png'
 import MainPage from './component/MainPage';
+import { useState } from 'react';
+import Modal from './component/Modal';
 
 function App() {
 
   const navigate = useNavigate();
+  //모달 여부
+  const [show, setShow] = useState(false);
+
+  //모달 클릭 여부
+  function showClick(){
+    setShow(true);
+  }
 
   return (
     <div className="App">
+
+      {show ? <Modal show={show} setShow={setShow}/> : <></>}
 
       <header>
         <div className='container'>
@@ -21,7 +32,7 @@ function App() {
             <div className='menu_wrap'>
               <button className='menu_btn'>
                 <span>
-                  <i className="bi bi-list"></i>
+                  <i className="bi bi-list" onClick={()=>{showClick()}}></i>
                 </span>
               </button>
             </div>

@@ -27,13 +27,15 @@
   margin-top: 20px;
 }
 
-.section-container{
+.service-section-container{
   display: flex;
   align-items: flex-start;
+  justify-content: center;
 }
 
 .section-container-left{
   width: auto;
+  height: 100%;
 }
 
 .left-side{
