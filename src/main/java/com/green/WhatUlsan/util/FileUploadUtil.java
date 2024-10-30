@@ -18,7 +18,7 @@ public class FileUploadUtil {
             imgVO = new ImgVO();
 
             //업로드 될 경로
-            String uploadPath = "D:\\01-STUDY\\dev\\WhatUlsan\\src\\main\\resources\\static\\imgs\\upload";
+            String uploadPath = "D:\\01-STUDY\\dev\\WhatUlsan\\src\\main\\resources\\static\\imgs\\upload\\";
 
             //내가 선택한 원본 파일명
             String originFileName = uploadFile.getOriginalFilename();

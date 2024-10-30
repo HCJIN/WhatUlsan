@@ -65,6 +65,9 @@ public class ItemController {
         //상품 정보 등록
         itemService.insertItem(itemVO);
 
+        // 편의시설 정보 등록
+        itemService.insertAmenities(itemVO);
+
         //itemVO 객체에 이미지 정보를 다 저장
         //1. imgVO를 여러개 저장할 수 있는 List 생성
         List<ImgVO> imgList = new ArrayList<>();
@@ -79,4 +82,10 @@ public class ItemController {
         //상품 이미지 정보 등록
         itemService.insertImgs(itemVO);
     }
+
+    @GetMapping("/getItemAll")
+    public List<ItemVO> getItemAll(){
+        return itemService.getItemAll();
+    }
+
 }

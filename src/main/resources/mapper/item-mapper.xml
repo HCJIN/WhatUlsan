@@ -3,17 +3,20 @@
 
 <!-- 해당 파일에 모든 쿼리문을 작성 -->
 <mapper namespace="itemMapper">
+    <!--카테고리-->
     <resultMap id="category" type="com.green.WhatUlsan.item.vo.CategoryVO">
         <id column="CATE_CODE" property="cateCode"/>
         <result column="CATE_NAME" property="cateName"/>
         <result column="CATE_DETAIL" property="cateDetail" />
     </resultMap>
 
+    <!--편의시설-->
     <resultMap id="amenities" type="com.green.WhatUlsan.item.vo.AmenitiesVO">
         <id column="AMENITIES_CODE" property="amenitiesCode"/>
         <result column="AMENITIES_NAME" property="amenitiesName"/>
     </resultMap>
 
+    <!--상품(맛집)-->
     <resultMap id="item" type="com.green.WhatUlsan.item.vo.ItemVO">
         <id column="ITEM_CODE" property="itemCode"/>
         <result column="ITEM_NAME" property="itemName"/>
@@ -24,6 +27,7 @@
         <collection property="amenitiesList" resultMap="itemMapper.amenities" />
     </resultMap>
 
+    <!--상품(맛집)해당 이미지-->
     <resultMap id="img" type="com.green.WhatUlsan.item.vo.ImgVO">
         <id column="IMG_CODE" property="imgCode"/>
         <result column="ORIGIN_FILE_NAME" property="originFileName"/>
@@ -82,8 +86,12 @@
         </foreach>
     </insert>
 
+    <!--상품(맛집)의 해당하는 편의시설들-->
     <insert id="insertAmenities">
-        INSERT INTO WHAT_ITEM_AMENITIES(ITEM_CODE, AMENITIES_CODE)
+        INSERT INTO ITEM_AMENITIES_MAPPING(
+            ITEM_CODE
+            , AMENITIES_CODE
+        )
         VALUES
         <foreach collection="amenitiesList" item="amenities" separator=",">
             (#{itemCode}, #{amenities.amenitiesCode})
@@ -94,6 +102,27 @@
     <select id="getNextItemCode" resultType="int">
         SELECT IFNULL(MAX(ITEM_CODE),0) + 1
         FROM WHAT_ITEM;
+    </select>
+
+    <select id="getItemAll" resultMap="item">
+        SELECT i.ITEM_CODE
+        , i.ITEM_NAME
+        , i.ITEM_INTRO
+        , i.ITEM_AREA
+        , i.CATE_CODE
+        , c.CATE_NAME
+        , c.CATE_DETAIL
+        , a.AMENITIES_CODE
+        , a.AMENITIES_NAME
+        , img.IMG_CODE
+        , img.ORIGIN_FILE_NAME
+        , img.ATTACHED_FILE_NAME
+        , img.IS_MAIN
+        FROM WHAT_ITEM i
+        LEFT JOIN WHAT_CATEGORY c ON i.CATE_CODE = c.CATE_CODE
+        LEFT JOIN ITEM_AMENITIES_MAPPING m ON i.ITEM_CODE = m.ITEM_CODE
+        LEFT JOIN ITEM_AMENITIES a ON m.AMENITIES_CODE = a.AMENITIES_CODE
+        LEFT JOIN WHAT_REGIMG img ON i.ITEM_CODE = img.ITEM_CODE
     </select>
 
 

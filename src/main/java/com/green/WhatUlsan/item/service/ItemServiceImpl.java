@@ -44,4 +44,9 @@ public class ItemServiceImpl implements ItemService{
     public int getNextItemCode() {
         return sqlSession.selectOne("itemMapper.getNextItemCode");
     }
+
+    @Override
+    public List<ItemVO> getItemAll() {
+        return sqlSession.selectList("itemMapper.getItemAll");
+    }
 }

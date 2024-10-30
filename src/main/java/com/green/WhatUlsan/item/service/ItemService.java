@@ -13,8 +13,12 @@ public interface ItemService {
     // 편의시설 리스트 전체 조회
     List<AmenitiesVO> getAmenitiesList();
 
+    // 상품등록(맛집등록)
     void insertItem(ItemVO itemVO);
     void insertImgs(ItemVO itemVO);
     void insertAmenities(ItemVO itemVO);
     int getNextItemCode();
+
+    List<ItemVO> getItemAll();
+
 }

@@ -71,7 +71,7 @@ const RegImgPage = () => {
     // form 객체에 데이터 추가
     itemForm.append('itemName', itemData.itemName || '');  // 기본값 설정
     itemForm.append('itemIntro', itemData.itemIntro || '');  // 기본값 설정
-    itemForm.append('itemArea', itemData.itemArea || '중구');  // 기본값 설정
+    itemForm.append('itemArea', itemData.itemArea || '');  // 기본값 설정
     itemForm.append('cateCode', itemData.cateCode || 1);  // 기본값 설정
     itemForm.append('mainImg', mainImg);
     itemForm.append('subImg', subImg);

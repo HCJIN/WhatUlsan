@@ -1,6 +1,7 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './Restaurant.css';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 
 const Restaurant = () => {
@@ -9,6 +10,9 @@ const Restaurant = () => {
 
   // restaurant-select-head 부분의 글이 바뀔때 거기에 맞는 값이 들어오게 하는 state변수
   const [headSelect, setHeadSelect] = useState('맛집');
+
+  // itemList를 조회해서 저장 할 변수
+  const [itemList, setItemList] = useState([]);
 
   // headSelect의 글을 바꿔줄 onchange 함수
   function headSelectOnchange(e){
@@ -70,10 +74,6 @@ const Restaurant = () => {
             <option>동구</option>
             <option>울주군</option>
           </select>
-          <select>
-            <option>할인여부</option>
-            <option>할인 O</option>
-          </select>
         </div>
       );
     }
@@ -95,10 +95,6 @@ const Restaurant = () => {
             <option>동구</option>
             <option>울주구</option>
           </select>
-          <select>
-            <option>할인여부</option>
-            <option>할인 O</option>
-          </select>
         </div>
       );
     }
@@ -117,6 +113,16 @@ const Restaurant = () => {
       )
     }
   }
+
+  useEffect(() => {
+    axios.get('/item/getItemAll')
+    .then((res) => {
+      setItemList(res.data)
+    })
+    .catch((error) => {console.log(error)})
+  },[])
+
+  console.log(itemList)
 
   // 지역 편의시설 할인여부처럼 기본 값 일때는 전체를 조회하도록 만들어야한다.
 
@@ -159,12 +165,18 @@ const Restaurant = () => {
         <div>
           <ul>
             <li>
-              <div>
-                <div>
-                  <img onClick={() => {navigate()}} style={{width:'100px'}} src="http://localhost:8080/imgs/화도담_4.jpg" alt='이미지' />
-                </div>
-                <div>이미지에 해당하는 기본정보</div>
-              </div>
+              {
+                itemList.map((item, i) => {
+                  return(
+                    <div key={i}>
+                      <div>
+                        <img src={item.imgList && item.imgList.length > 0 ? `http://localhost:8080/imgs/upload/${item.imgList[0].attachedFileName}` : 'default_image_url'} alt={item.itemName}/>
+                      </div>
+                      <div>{item.itemName}</div>
+                    </div>
+                  )
+                })
+              }
             </li>
           </ul>
           <div className='restaurant-under-page'>
