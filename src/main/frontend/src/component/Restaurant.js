@@ -162,16 +162,17 @@ const Restaurant = () => {
           </div>
         </div>
         {/* 이미지를 담당하는 div */}
-        <div>
-          <ul>
-            <li>
+        <div className='food-box'>
+          <ul id='foodList'>
+            <li className='food_list'>
               {
                 itemList.map((item, i) => {
                   return(
-                    <div key={i}>
-                      <div>
+                    <div key={i} className='food-div'>
+                      <div className='food'>
                         <img src={item.imgList && item.imgList.length > 0 ? `http://localhost:8080/imgs/upload/${item.imgList[0].attachedFileName}` : 'default_image_url'} alt={item.itemName}/>
                       </div>
+                      <div className='basic'>기본정보</div>
                       <div>{item.itemName}</div>
                     </div>
                   )
