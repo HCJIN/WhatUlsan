@@ -82,6 +82,56 @@
   height: 36px;
 }
 
+/* 맛집리스트 css */
+
+.food-box {
+  gap: 8px;
+}
+
+.food_list {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  border: 1px solid black;
+}
+
+.food-div{
+  width: 300px;
+  height: 350px;
+  border-radius: 20px;
+  border: 1px solid lightgray;
+}
+
+.food {
+  width: 300px;
+  height: 200px;
+  border-radius: 20px;
+  overflow:hidden;
+}
+
+.food > img {
+  width: 300px;
+}
+
+.basic {
+  border-radius: 4px;
+  display: inline-block;
+  font-size: .625rem;
+  font-weight: 300;
+  line-height: 20px;
+  min-width: 35px;
+  padding: 0 8px;
+  text-align: center;
+  border: 1px solid #ffa81c;
+  color: #ffa81c;
+}
+
+
+
+
+
+
+/*  */
 .restaurant-under-page{
   display: flex;
   justify-content: center;
