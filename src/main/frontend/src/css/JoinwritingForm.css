@@ -89,3 +89,19 @@
   margin: 10px 0;
   text-align: center;
 }
+
+.writer-name{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.writer-chk{
+  display: flex;
+  align-items: center;
+  justify-content: start;
+}
+
+.writer-chk span{
+  width: 60px;
+}
