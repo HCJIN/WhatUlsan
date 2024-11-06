@@ -6,6 +6,10 @@ const JoinwritingForm = ({writing, setWriting}) => {
 
   const [post, setPost] = useState({})
 
+  //중요공지 체크여부
+  const [importance, setImportance] = useState(false);
+  console.log(importance)
+
   function onChange(e){
     setPost({
       ...post,
@@ -38,9 +42,13 @@ const JoinwritingForm = ({writing, setWriting}) => {
             <tr className='writer-tr'>
               <td colSpan={2}>
                 <div>
-                  <p>
+                  <p className='writer-name'>
                     <span>작성자 : </span>
                     <span>이름</span>
+                    <p className='writer-chk'>
+                      <input type='checkbox' onClick={()=>{setImportance(!importance)}}></input>
+                      <span>중요</span>
+                    </p>
                   </p>
                   <i className="bi bi-x-circle-fill" onClick={()=>{
                     setWriting(false)
