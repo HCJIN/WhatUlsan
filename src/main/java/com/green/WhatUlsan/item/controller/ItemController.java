@@ -21,16 +21,19 @@ public class ItemController {
     @Resource(name = "itemService")
     private ItemService itemService;
 
+    // 카테고리 조회
     @GetMapping("/getCategoryList")
     public List<CategoryVO> getCategoryList(){
         return itemService.getCategoryList();
     }
 
+    // 편의시설 조회
     @GetMapping("/getAmenitiesList")
     public List<AmenitiesVO> getAmenitiesList(){
         return itemService.getAmenitiesList();
     }
 
+    // 아이템 등록
     @PostMapping("/insertItem")
     public void insertItem(ItemVO itemVO
         , @RequestParam("mainImg")MultipartFile mainImg
@@ -83,6 +86,7 @@ public class ItemController {
         itemService.insertImgs(itemVO);
     }
 
+    // 전체 아이템 조회
     @GetMapping("/getItemAll")
     public List<ItemVO> getItemAll(){
         return itemService.getItemAll();

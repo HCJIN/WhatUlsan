@@ -14,17 +14,19 @@ public class ItemServiceImpl implements ItemService{
     @Autowired
     private SqlSessionTemplate sqlSession;
 
-
+    // 카테고리 리스트 조회
     @Override
     public List<CategoryVO> getCategoryList() {
         return sqlSession.selectList("itemMapper.getCategoryList");
     }
 
+    // 편의시설 리스트 조회
     @Override
     public List<AmenitiesVO> getAmenitiesList() {
         return sqlSession.selectList("itemMapper.getAmenitiesList");
     }
 
+    // 아이템을 등록하는 메서드
     @Override
     public void insertItem(ItemVO itemVO) {
         sqlSession.insert("itemMapper.insertItem", itemVO);
@@ -45,6 +47,7 @@ public class ItemServiceImpl implements ItemService{
         return sqlSession.selectOne("itemMapper.getNextItemCode");
     }
 
+    // 전체 아이템 조회
     @Override
     public List<ItemVO> getItemAll() {
         return sqlSession.selectList("itemMapper.getItemAll");

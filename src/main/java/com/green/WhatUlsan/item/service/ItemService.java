@@ -19,6 +19,7 @@ public interface ItemService {
     void insertAmenities(ItemVO itemVO);
     int getNextItemCode();
 
+    // 아이템 전체 조회
     List<ItemVO> getItemAll();
 
 }

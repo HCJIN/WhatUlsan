@@ -104,6 +104,7 @@
         FROM WHAT_ITEM;
     </select>
 
+    <!--전체 아이템 조회-->
     <select id="getItemAll" resultMap="item">
         SELECT i.ITEM_CODE
         , i.ITEM_NAME

@@ -11,6 +11,10 @@
   align-items: center;
 }
 
+.restaurant-select-head > ul{
+  display: flex;
+}
+
 .change-head{
   display: flex;
   margin-left: 20px;

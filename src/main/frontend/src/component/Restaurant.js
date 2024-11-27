@@ -11,135 +11,82 @@ const Restaurant = () => {
   // restaurant-select-head 부분의 글이 바뀔때 거기에 맞는 값이 들어오게 하는 state변수
   const [headSelect, setHeadSelect] = useState('맛집');
 
-  // itemList를 조회해서 저장 할 변수
-  const [itemList, setItemList] = useState([]);
+  const [categories, setCategories] = useState([]);
+  const [filteredCategories, setFilteredCategories] = useState([]);
 
-  // headSelect의 글을 바꿔줄 onchange 함수
-  function headSelectOnchange(e){
-    setHeadSelect(e.target.value);
-  }
-
-  // select값의 변동에 따라 headName이 바뀌는 함수
-  function headName(){
-    if(headSelect == '맛집'){
-      return(
-        <ul className='change-head'>
-          <li>전체</li>
-          <li>한식</li>
-          <li>중식</li>
-          <li>일식</li>
-          <li>양식</li>
-          <li>아시안</li>
-          <li>기타</li>
-        </ul>
-      )
-    }
-    else if(headSelect == '카페/디저트'){
-      return(
-        <ul className='change-head'>
-          <li>전체</li>
-          <li>디저트</li>
-          <li>카페</li>
-        </ul>
-      )
-    }
-    else if(headSelect == '추천관광지'){
-      return(
-        <ul className='change-head'>
-          <li>전체</li>
-          <li>볼거리</li>
-          <li>즐길거리</li>
-        </ul>
-      )
-    }
-  }
-
-  // select 값의 변동에 따라 filterName이 바뀌는 함수
-  function filterName(){
-    if(headSelect == '맛집'){
-      return(
-        <div className='restaurant-under-bar'>
-          <select>
-            <option>편의시설</option>
-            <option>무료주차</option>
-            <option>와이파이</option>
-            <option>배달</option>
-            <option>테이크아웃</option>
-          </select>
-          <select>
-            <option>지역</option>
-            <option>중구</option>
-            <option>남구</option>
-            <option>북구</option>
-            <option>동구</option>
-            <option>울주군</option>
-          </select>
-        </div>
-      );
-    }
-    else if(headSelect == '카페/디저트'){
-      return(
-        <div className='restaurant-under-bar'>
-          <select>
-            <option>편의시설</option>
-            <option>무료주차</option>
-            <option>와이파이</option>
-            <option>배달</option>
-            <option>테이크아웃</option>
-          </select>
-          <select>
-            <option>지역</option>
-            <option>중구</option>
-            <option>남구</option>
-            <option>북구</option>
-            <option>동구</option>
-            <option>울주구</option>
-          </select>
-        </div>
-      );
-    }
-    else if(headSelect == '추천관광지'){
-      return(
-        <div className='restaurant-under-bar'>
-          <select>
-            <option>지역</option>
-            <option>중구</option>
-            <option>남구</option>
-            <option>북구</option>
-            <option>동구</option>
-            <option>울주구</option>
-          </select>
-        </div>
-      )
-    }
-  }
-
+  // 카테고리 데이터 로드
   useEffect(() => {
-    axios.get('/item/getItemAll')
-    .then((res) => {
-      setItemList(res.data)
-    })
-    .catch((error) => {console.log(error)})
-  },[])
+    axios.get('item/getCategoryList') // 카테고리 조회 API 엔드포인트
+      .then((res) => {
+        setCategories(res.data);
+        filterCategories(res.data, headSelect); // 기본 카테고리 필터링
+      })
+      .catch((error) => console.error(error));
+  }, []);
 
-  console.log(itemList)
+  // headSelect 변경 시 필터링
+  useEffect(() => {
+    filterCategories(categories, headSelect);
+  }, [headSelect]);
+
+  // 카테고리 필터링 함수
+  const filterCategories = (categories, selectedHead) => {
+    console.log(categories)
+    const filtered = categories.filter(cat => cat.cateName === selectedHead);
+    setFilteredCategories(filtered);
+  };
+  console.log(filteredCategories)
+
+  // console.log(filteredCategories)
+
+  // useEffect(() => {
+  //   let endpoint = '';
+    
+  //   // headSelect 값에 따른 API 엔드포인트 설정
+  //   switch (headSelect) {
+  //     case '맛집':
+  //       endpoint = '/item/getRestaurantItems';
+  //       break;
+  //     case '카페/디저트':
+  //       endpoint = '/item/getCafeItems';
+  //       break;
+  //     case '추천관광지':
+  //       endpoint = '/item/getTouristItems';
+  //       break;
+  //     default:
+  //       endpoint = '/item/getItemAll'; // 기본적으로 모든 아이템 조회
+  //   }
+  
+  //   axios.get(endpoint)
+  //     .then((res) => {
+  //       setItemList(res.data);
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
+  // }, [headSelect]);  // headSelect 변경 시마다 실행
+  
 
   // 지역 편의시설 할인여부처럼 기본 값 일때는 전체를 조회하도록 만들어야한다.
 
   return (
     <div className='restaurant-contain'>
       <div className='restaurant-select-head'>
-        <select className='restaurant-head-bar' onChange={headSelectOnchange} value={headSelect}>
-          <option value='맛집'>맛집</option>
-          <option value='카페/디저트'>카페/디저트</option>
-          <option value='추천관광지'>추천관광지</option>
+        <select onChange={(e) => setHeadSelect(e.target.value)} value={headSelect}>
+          <option value="맛집">맛집</option>
+          <option value="카페/디저트">카페/디저트</option>
+          <option value="추천관광지">추천관광지</option>
         </select>
-        {headName()}
+        <ul>
+          {filteredCategories.map(cat => (
+            <li key={cat.cateCode}>{cat.cateDetail}</li>
+          ))}
+        </ul>
       </div>
       <div className='restaurant-main-content'>
         <div className='restaurant-filter-food'>
           <div className='restaurant-filter-food-head'>전체</div>
-          {filterName()}
+          
         </div>
         <div className='restaurant-sequence'>
           <div className='restaurant-sequence-all'>
@@ -165,18 +112,7 @@ const Restaurant = () => {
         <div>
           <ul>
             <li>
-              {
-                itemList.map((item, i) => {
-                  return(
-                    <div key={i}>
-                      <div>
-                        <img src={item.imgList && item.imgList.length > 0 ? `http://localhost:8080/imgs/upload/${item.imgList[0].attachedFileName}` : 'default_image_url'} alt={item.itemName}/>
-                      </div>
-                      <div>{item.itemName}</div>
-                    </div>
-                  )
-                })
-              }
+              
             </li>
           </ul>
           <div className='restaurant-under-page'>
