@@ -104,8 +104,8 @@
         FROM WHAT_ITEM;
     </select>
 
-    <!--전체 아이템 조회-->
-    <select id="getItemAll" resultMap="item">
+    <!--해당하는 카테고리의 아이템 조회 + 카테고리 디테일이 있을 경우도 함께 조회-->
+    <select id="getItemsByCategory" resultMap="item">
         SELECT i.ITEM_CODE
         , i.ITEM_NAME
         , i.ITEM_INTRO
@@ -124,6 +124,11 @@
         LEFT JOIN ITEM_AMENITIES_MAPPING m ON i.ITEM_CODE = m.ITEM_CODE
         LEFT JOIN ITEM_AMENITIES a ON m.AMENITIES_CODE = a.AMENITIES_CODE
         LEFT JOIN WHAT_REGIMG img ON i.ITEM_CODE = img.ITEM_CODE
+        WHERE c.CATE_NAME = #{cateName}
+        <!-- 전체를 클릭했을 때는 cateDetail 조건 없이 모든 항목 조회 -->
+        <if test="cateDetail != null and cateDetail != ''">
+            AND c.CATE_DETAIL = #{cateDetail}
+        </if>
     </select>
 
 

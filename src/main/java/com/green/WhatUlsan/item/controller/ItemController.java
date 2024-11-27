@@ -8,11 +8,11 @@ import com.green.WhatUlsan.item.vo.ItemVO;
 import com.green.WhatUlsan.util.FileUploadUtil;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 @Slf4j
 @RequestMapping("/item")
@@ -87,9 +87,19 @@ public class ItemController {
     }
 
     // 전체 아이템 조회
-    @GetMapping("/getItemAll")
-    public List<ItemVO> getItemAll(){
-        return itemService.getItemAll();
+    @GetMapping("/getCategoryItems")
+    public ResponseEntity<List<ItemVO>> getCategoryItems(
+            @RequestParam String cateName,
+            @RequestParam(value = "cateDetail", required = false) String cateDetail
+    ){
+        System.out.println("@@@@@@@@@@@@@@@@@@@@@@Received cateName: " + cateName);
+        System.out.println("@@@@@@@@@@@@@@@@@@@@@@Received cateDetail: " + cateDetail);
+        Map<String, Object> params = new HashMap<>();
+        params.put("cateName", cateName);
+        params.put("cateDetail", cateDetail != null && !cateDetail.isEmpty() ? cateDetail : null);
+
+        List<ItemVO> items = itemService.getItemsByCategory(params);
+        return ResponseEntity.ok(items);
     }
 
 }

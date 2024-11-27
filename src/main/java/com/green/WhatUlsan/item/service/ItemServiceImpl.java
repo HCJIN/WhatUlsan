@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 @Service("itemService")
 public class ItemServiceImpl implements ItemService{
@@ -47,9 +48,10 @@ public class ItemServiceImpl implements ItemService{
         return sqlSession.selectOne("itemMapper.getNextItemCode");
     }
 
-    // 전체 아이템 조회
+    // 카테고리에 해당하는 아이템 조회 + 카테고리 디테일에서 한번더 조회도 가능하게 하는 코드
     @Override
-    public List<ItemVO> getItemAll() {
-        return sqlSession.selectList("itemMapper.getItemAll");
+    public List<ItemVO> getItemsByCategory(Map<String, Object> params) {
+        return sqlSession.selectList("itemMapper.getItemsByCategory", params);
     }
+
 }

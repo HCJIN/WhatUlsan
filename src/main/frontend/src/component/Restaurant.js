@@ -8,15 +8,21 @@ const Restaurant = () => {
 
   const navigate = useNavigate();
 
+  // 카테고리에 해당하는 아이템들을 저장할 state 변수
+  const [restaurantItems, setRestaurantItems] = useState([]);
+
   // restaurant-select-head 부분의 글이 바뀔때 거기에 맞는 값이 들어오게 하는 state변수
   const [headSelect, setHeadSelect] = useState('맛집');
 
+  // 카테고리 리스트 저장하는 state변수
   const [categories, setCategories] = useState([]);
+
+  // headSelect에서 필터링 된 cateDetail이 들어가는 함수
   const [filteredCategories, setFilteredCategories] = useState([]);
 
   // 카테고리 데이터 로드
   useEffect(() => {
-    axios.get('item/getCategoryList') // 카테고리 조회 API 엔드포인트
+    axios.get('/item/getCategoryList')
       .then((res) => {
         setCategories(res.data);
         filterCategories(res.data, headSelect); // 기본 카테고리 필터링
@@ -35,51 +41,34 @@ const Restaurant = () => {
     const filtered = categories.filter(cat => cat.cateName === selectedHead);
     setFilteredCategories(filtered);
   };
-  console.log(filteredCategories)
 
-  // console.log(filteredCategories)
+  const handleCategoryDetailClick = (cateDetail) => {
+    const params = {
+      cateName : headSelect,
+      cateDetail : cateDetail === '전체' ? '' : cateDetail
+    };
 
-  // useEffect(() => {
-  //   let endpoint = '';
-    
-  //   // headSelect 값에 따른 API 엔드포인트 설정
-  //   switch (headSelect) {
-  //     case '맛집':
-  //       endpoint = '/item/getRestaurantItems';
-  //       break;
-  //     case '카페/디저트':
-  //       endpoint = '/item/getCafeItems';
-  //       break;
-  //     case '추천관광지':
-  //       endpoint = '/item/getTouristItems';
-  //       break;
-  //     default:
-  //       endpoint = '/item/getItemAll'; // 기본적으로 모든 아이템 조회
-  //   }
-  
-  //   axios.get(endpoint)
-  //     .then((res) => {
-  //       setItemList(res.data);
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //     });
-  // }, [headSelect]);  // headSelect 변경 시마다 실행
-  
+    console.log(params)
 
-  // 지역 편의시설 할인여부처럼 기본 값 일때는 전체를 조회하도록 만들어야한다.
+    axios.get('/item/getCategoryItems', {params})
+    .then((res) => {
+      setRestaurantItems(res.data);
+    })
+    .catch(error => console.log(error));
+  };
 
   return (
     <div className='restaurant-contain'>
       <div className='restaurant-select-head'>
-        <select onChange={(e) => setHeadSelect(e.target.value)} value={headSelect}>
+        <select className='restaurant-head-bar' onChange={(e) => setHeadSelect(e.target.value)} value={headSelect}>
           <option value="맛집">맛집</option>
           <option value="카페/디저트">카페/디저트</option>
           <option value="추천관광지">추천관광지</option>
         </select>
-        <ul>
+        <ul className='change-head'>
+          <li onClick={() => handleCategoryDetailClick('전체')}>전체</li>
           {filteredCategories.map(cat => (
-            <li key={cat.cateCode}>{cat.cateDetail}</li>
+            <li key={cat.cateCode} onClick={() => handleCategoryDetailClick(cat.cateDetail)}>{cat.cateDetail}</li>
           ))}
         </ul>
       </div>
